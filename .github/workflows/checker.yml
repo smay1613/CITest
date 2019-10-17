@@ -7,6 +7,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Lint the code"
-        uses: muxee/clang-tidy-action@master
-        with:
-          args: -checks=*
+        uses: CyberZHG/github-action-cpp-lint@master
