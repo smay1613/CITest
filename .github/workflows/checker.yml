@@ -6,5 +6,6 @@ jobs:
     name: clang-tidy
     runs-on: ubuntu-latest
     steps:
-      - name: "Lint the code"
-        uses: CyberZHG/github-action-cpp-lint@master
+      - name: clang-tidy check
+        uses: muxee/clang-tidy-action@0.0.1-rc1
+
