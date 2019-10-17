@@ -5,8 +5,7 @@ find_package(Boost REQUIRED COMPONENTS regex filesystem)
 
 include_directories(${Boost_INCLUDE_DIRS})
 
-add_executable(${PROJECT_NAME} "main.cpp"
-                               "PlaylistProcessingNodes.cpp"
+add_library(${PROJECT_NAME}    "PlaylistProcessingNodes.cpp"
                                "PlaylistProcessorImpl.h"
                                "PlaylistProcessor.cpp")
 set(CMAKE_CXX_STANDARD 11)
