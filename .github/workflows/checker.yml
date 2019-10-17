@@ -1,15 +1,10 @@
 name: lint
 
-on: 
-  pull_request:
-    branches:
-      - master
-  
+on: [pull_request]
 jobs:
-  linter_check:
+  clang-tidy:
+    name: clang-tidy
     runs-on: ubuntu-latest
-    
     steps:
-      - name: clang-tidy check
-      - uses: muxee/clang-tidy-action@0.0.1-rc1
-      - run: echo Hello, world!
+      - name: "Lint the code"
+        uses: muxee/clang-tidy-action@master
