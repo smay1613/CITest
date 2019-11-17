@@ -1,0 +1,12 @@
+name: Test homework functionality
+
+on:
+  project_column:
+    types: [moved]
+
+
+jobs:
+  check-homework:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: smay1613/homework-checker-action@master
