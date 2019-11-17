@@ -1,8 +1,6 @@
 name: Test homework functionality
 
-on:
-  project_column:
-    types: [moved]
+on: [project_column]
 
 jobs:
   check-homework:
