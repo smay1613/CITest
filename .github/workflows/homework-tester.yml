@@ -1,6 +1,8 @@
 name: Test homework functionality
 
-on: [project_column]
+on: 
+  project_card:
+    types: [moved]
 jobs:
   check-homework:
     runs-on: ubuntu-latest
