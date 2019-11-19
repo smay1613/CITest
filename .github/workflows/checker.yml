@@ -1,4 +1,4 @@
-name: lint
+name: Clang tidy/cppcheck linting
 
 on: [pull_request]
 jobs:
