@@ -3,9 +3,12 @@ name: Pull request name lint
 on: [pull_request]
 
 jobs:
-  pr-lint:
+  autoclose:
     runs-on: ubuntu-latest
     steps:
-    - uses: seferov/pr-lint-action@master
+    - name: Autoclose issues that did not follow issue template
+      uses: roots/issue-closer@v1.1
       with:
-        title-regex: 'Task.*\d+.*\[card-\d+\]'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-close-message: "@${issue.user.login} this issue was automatically closed because it did not follow the issue template"
+        issue-pattern: 'Task.*\d+.*\[card-\d+\'
