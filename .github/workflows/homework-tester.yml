@@ -13,7 +13,7 @@ jobs:
         repository: smay1613/Luxoft-Training-Center-CPP-003-Tests
         ref: refs/heads/master
         token: ${{ secrets.ACCESS_TOKEN }}
-        path: $GITHUB_WORKSPACE
+        path: ${{ github.workspace }}
     - name: "Homework check"
       uses: smay1613/homework-checker-action@master
       env:
