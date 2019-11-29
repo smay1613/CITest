@@ -7,8 +7,14 @@ jobs:
   check-homework:
     runs-on: ubuntu-latest
     steps:
-    - uses: smay1613/homework-checker-action@master
-    env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        DEBUG: "true"
+    - name: "Checkout"
+      uses: actions/checkout@v1
+      with:
+        repository: myAccount/myRepository
+        ref: refs/heads/master
+        token: ${{ secrets.ACCESS_TOKEN }}
+    - name: "Homework check"
+      uses: smay1613/homework-checker-action@master
+      env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         DEBUG: "true"
