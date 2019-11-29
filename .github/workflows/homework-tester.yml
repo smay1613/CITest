@@ -10,7 +10,7 @@ jobs:
     - name: "Checkout"
       uses: actions/checkout@v1
       with:
-        repository: myAccount/myRepository
+        repository: smay1613/Luxoft-Training-Center-CPP-003-Tests
         ref: refs/heads/master
         token: ${{ secrets.ACCESS_TOKEN }}
     - name: "Homework check"
