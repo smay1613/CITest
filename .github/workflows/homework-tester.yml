@@ -6,6 +6,9 @@ on:
 jobs:
   check-homework:
     runs-on: ubuntu-latest
+    container:
+      volumes: 
+        - /home/runner/work/CITest/tests:/github/workspace/tests
     steps:
     - name: "Checkout"
       uses: actions/checkout@v1
