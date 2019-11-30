@@ -12,7 +12,7 @@ jobs:
         repository: smay1613/Luxoft-Training-Center-CPP-003-Tests
         ref: refs/heads/master
         token: ${{ secrets.ACCESS_TOKEN }}
-        path: tests
+        path: CITest/tests
     - uses: smay1613/homework-checker-action@master
       env:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
