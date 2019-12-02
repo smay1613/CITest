@@ -13,10 +13,11 @@
 9. Check "Hometask project" - https://github.com/smay1613/CITest/projects/1
 10. Copy card link of card under "Current hometask"
 11. Go to https://github.com/smay1613/CITest/pulls
-12. Create new pull request with this **title and description**:
+12. Create new pull request with similar **title and description**:
+
 Hometask 1 [card-28819582]
 
-(replace id with id copied at step 10)
+*(replace id with id copied at step 10)*
 
 13. Done!
 
