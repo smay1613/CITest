@@ -21,6 +21,6 @@ Hometask 1 [card-28819582]
 
 13. Done!
 
-Example of successfull pull request: https://github.com/smay1613/CITest/pull/11
+Example of correct pull request: https://github.com/smay1613/CITest/pull/11
 
 P.s: You can open project via project root CMakeLists.txt in QtCreator
