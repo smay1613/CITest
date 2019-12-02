@@ -6,9 +6,9 @@
 6. Copy method declaration from training material sources to include/impl.h
 7. Implement function in src/impl.cpp
 8. Push changes to github:
-git add //files\\
-git commit -m "Implements homework"
-git push
+* git add *files*
+* git commit -m "Implements homework"
+* git push
 
 9. Check "Hometask project" - https://github.com/smay1613/CITest/projects/1
 10. Copy card link of card under "Current hometask"
