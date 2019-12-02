@@ -18,3 +18,5 @@ Hometask 1 [card-28819582]
 
 (replace id with id copied at step 10)
 13. Done!
+
+Example of successfull pull request: https://github.com/smay1613/CITest/pull/11
