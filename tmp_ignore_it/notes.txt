@@ -1,0 +1,72 @@
+/*
+char* IntToBinaryRepresentation(char* bufer, int source)
+
+{
+    for(int k=0;k<79;k++)
+        bufer[k]=0;
+    int sz = sizeof(int) *8;
+    std::cout<<"Size: "<< sz <<std::endl;
+    for (int i=0; i< sz; i++)
+    {
+
+        int shifted = source >> 1;
+        int reshifted= shifted << 1;
+        int bit_repr = source ^ reshifted ;
+        std::cout<<"i:"<<i<<" source: " << source
+                << "  shifted: "<<shifted
+                <<" reshifted: "<<reshifted
+               <<" bit_repr: "<<bit_repr
+               <<std::endl;
+        source = shifted;
+        char bit = static_cast<char>(bit_repr );
+        std::cout<<"i:"<<i<<"  bit_repr:"<<bit_repr<<std::endl;
+        //sprintf(&bufer[i], "%d", bit_repr);
+
+        char str[1];
+        sprintf(&str[0], "%d", bit_repr);
+        bufer[31-i]=str[0];
+       // std::cout<<"i:"<<i<<"  str:"<<str<<" bufer: ["<< std::hex<<bufer<<"]"<<std::endl;
+    }
+    for(int j=0;j<sz; j++)
+    {
+        std::cout<<"Result" <<j<<" ["<<bufer[j]<<"]"<<std::endl;
+    }
+    return bufer;
+}
+/*
+
+  char* IntToBinaryRepresentation_dbg(char* bufer, int source)
+
+void printPrompt()
+{
+    std::cout << "$:";
+}
+
+int main()
+{
+    std::string comand;
+    while (printPrompt(), std::cin>>comand)
+    {
+
+    }
+
+}
+*/
+
+/*
+ *
+ *
+ *
+TEST(Lab1,Simple)
+{
+   int source = 0x5;
+   char* expected = "00000000000000000000000000000101";
+   char buffer[80];
+
+   char *actual = IntToBinaryRepresentation(buffer,source);
+
+
+   ASSERT_STREQ(expected,actual);
+}
+ */
+
