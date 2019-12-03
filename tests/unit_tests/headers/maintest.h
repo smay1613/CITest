@@ -1,5 +1,6 @@
 #pragma once
 #include "gtest/gtest.h"
+#include "impl.h"
 
 TEST(Lab1,Simple)
 {
