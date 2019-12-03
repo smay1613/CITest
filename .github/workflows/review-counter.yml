@@ -2,7 +2,7 @@ on: pull_request_review
 name: Label reviewed pull requests
 jobs:
   labelWhenApproved:
-    name: Label when revieved first time
+    name: Label when revieved second time
     runs-on: ubuntu-latest
     steps:
     - name: Label when approved
