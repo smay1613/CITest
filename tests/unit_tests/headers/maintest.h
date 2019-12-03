@@ -2,14 +2,14 @@
 #include "gtest/gtest.h"
 #include "impl.h"
 
-TEST(Lab1,Simple)
+TEST(Lab2,Simple)
 {
-   int source = 0x5;
-   char* expected = "00000000000000000000000000000101";
-   char buffer[80];
+    int x = 0xFF0;
+    int n = 3;
+    int p = 8;
+    int expected = 0xF10;
 
-   char *actual = IntToBinaryRepresentation(buffer,source);
+    int actual = BinaryInvert(x,p,n);
 
-
-   ASSERT_STREQ(expected,actual);
+    ASSERT_EQ(expected,actual);
 }
