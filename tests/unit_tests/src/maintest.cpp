@@ -3,45 +3,38 @@
 
 #include <gtest/gtest.h>
 
-int BinaryInvert(int x,int p,int n);
+#include <gtest/gtest.h>
 
-TEST(Lab2,Simple)
+bool Quadro(int a,int b,int c, double& x1,double& x2);
+
+TEST(Lab3,QuadroIsOk)
 {
-    int x = 0xFF0;
-    int n = 3;
-    int p = 7;  // old value 8 is incorrect. We must count bits from 0 to 31, not from 1 to 32
-    int expected = 0xF10;
+    int a = 2;
+    int b = 8;
+    int c = 4;
 
-    int actual = BinaryInvert(x,p,n);
+    double expectedX1 = -0.5857;
+    double expectedX2 = -3.4142;
+    double x1;
+    double x2;
 
-    ASSERT_EQ(expected,actual);
-}
+    ASSERT_TRUE(Quadro(a,b,c,x1,x2));
 
-TEST(Lab2,LeftRange)
-{
-    int x = 0xFF0;
-    int n = 1;
-    int p = 31;
-    int expected = 0x80000FF0;
-
-    int actual = BinaryInvert(x,p,n);
-
-    ASSERT_EQ(expected,actual);
-}
-
-TEST(Lab2,RightRange)
-{
-    int x = 0xFF0;
-    int n = 1;
-    int p = 0;
-    int expected = 0xFF1;
-
-    int actual = BinaryInvert(x,p,n);
-
-    ASSERT_EQ(expected,actual);
+    ASSERT_NEAR(x1,expectedX1,0.01);
+    ASSERT_NEAR(x2,expectedX2,0.01);
 }
 
 
+TEST(Lab3,QuadroIsNotSolution)
+{
+    int a = 8;
+    int b = 1;
+    int c = 9;
 
+    double x1;
+    double x2;
+
+    ASSERT_FALSE(Quadro(a,b,c,x1,x2));
+}
 
 

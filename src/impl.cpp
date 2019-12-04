@@ -1,14 +1,8 @@
 #include "impl.h"
 #include <cstdio>
-
-/*
- * binaryInvert.cpp
- *
- *  Created on: 15 ����. 2017 �.
- *      Author: Pavel Tsytovich
- */
-
-int BinaryInvert(int x,int p,int n)
+#include <cmath>
+#include <cstdio>
+bool Quadro(int a,int b,int c, double& x1,double& x2)
 {
-    return x ^ ((((0xFFFFFFFF >> (p+1-n)) << (p+1-n)) << ((sizeof(int)*8)-p-1)) >> ((sizeof(int)*8)-p-1));
+    return (((b*b - 4 * a * c) < 0)? false: (((b*b - 4 * a * c) == 0)?x1=x2=(-b/(2*a)), true: x1=(-b+sqrt(b*b - 4 * a * c))/(2*a), x2=(-b-sqrt(b*b - 4 * a * c))/(2*a),true));
 }
