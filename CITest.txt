@@ -1,0 +1,36 @@
+    1  mc
+    2  sudo apt-get install mc
+    3  sudo apt install mc
+    4  sudo reboot now
+    5  wget
+    6  exit
+    7  ./T1
+    8  sudo apt-get install mc
+    9  mc
+   10  exit
+   11  mc
+   12  ./T1
+   13  tar ./CITest 
+   14  tar -xvf ./CITest 
+   15  git clone https://github.com/ViktorHil/CITest.git
+   16  cd CITest/
+   17  mc
+   18  exit
+   19  ls -l
+   20  cd CITest
+   21  git add remote https://github.com/smay1613/CITest.git
+   22  git remote add https://github.com/smay1613/CITest.git
+	(upstream, not CITest for name)
+   23  git remote add CITest https://github.com/smay1613/CITest.git
+   24  ls -l
+   25  git merge upstream/master
+   26  git remote -v
+   27  git fetch upstream
+   28  git branch --all
+   29  git checkout master
+   30  git log
+   31  ls -l
+   32  git remote -v
+   33  git fetch CITest
+   34  git status
+   35  history > CITest.txt
