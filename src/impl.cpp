@@ -6,17 +6,21 @@
 
 void Decoder(const char key[],char message[]) {
     int k = 0;
-    char copy[ std::strlen(key)+1];
-    strcpy( copy, key);
+    strcpy( message, key);
     for( int i = 0; key[i]; ++i) {
-        if ( copy[i]) {
-            for( int j = 0; key[j]; ++j) {
-                if ( copy[i] == key[j]) {
-                    message[k]++;
+            char cmp = message[i];
+            if ( cmp != ' ') {
+                message[k] = 'A';
+                for( int j = i+1; message[j]; ++j) {
+                    if ( cmp == message[j]) {
+                        message[k]++;
+                        message[j] = ' ';
+                    }
                 }
+                k++;
             }
-        }
     }
+    message[k] = '\0';
 }
 
 
