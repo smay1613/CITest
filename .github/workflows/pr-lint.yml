@@ -10,5 +10,5 @@ jobs:
       uses: roots/issue-closer@v1.1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        pr-close-message: "@${pull_request.user.login} this issue was automatically closed because it did not follow the issue template"
-        pr-pattern: 'Task.*\d+.*\[card-\d+\]'
+        pr-close-message: "@${pull_request.user.login} this issue was automatically closed because it did not follow the issue template. \nPlease, name a task number and link the card in both title and description!"
+        pr-pattern: 'task.*\d+.*\[card-\d+\]'

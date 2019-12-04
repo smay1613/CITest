@@ -2,7 +2,7 @@ on: pull_request_review
 name: Label reviewed pull requests
 jobs:
   labelWhenApproved:
-    name: Label when revieved first time
+    name: Label when revieved second time
     runs-on: ubuntu-latest
     steps:
     - name: Label when approved
@@ -23,3 +23,13 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         ADD_LABEL: "first-review"
         REMOVE_LABEL: "to-be-reviewed"
+  labelWhenAdded:
+    name: Label when added first time
+    runs-on: ubuntu-latest
+    steps:
+    - name: Label when approved
+      uses: pullreminders/label-when-approved-action@master
+      env:
+        APPROVALS: "0"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ADD_LABEL: "to-be-reviewed"

@@ -1,5 +1,4 @@
 #include "impl.h"
-
 int BinaryInvert(int x,int p,int n)
 {
     unsigned int mask {x}, mask2 {~x};
