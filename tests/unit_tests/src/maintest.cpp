@@ -15,4 +15,3 @@ TEST(Lab2,Simple)
 
     ASSERT_EQ(expected,actual);
 }
-
