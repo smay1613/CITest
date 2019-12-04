@@ -1,3 +1,2 @@
 #pragma once
-
-char* IntToBinaryRepresentation(char *buff,int value);
+void Decoder(const char key[],char message[]);

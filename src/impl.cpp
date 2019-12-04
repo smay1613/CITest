@@ -1,13 +1,42 @@
 #include "impl.h"
+#include <stdio.h>
 
-char* IntToBinaryRepresentation(char *buff,int value)
-{
-   constexpr unsigned int int_size = sizeof(int) * 8;
-   for (unsigned int i = 0; i < int_size; i++)
-   {
-       buff[i] = '0' + static_cast<char>((value >> (int_size - 1 - i)) & 0x1);
-   }
-   buff[int_size] = '\0';
+struct node {
+    int freq {0};
+    int pos {-1};
+}node;
+constexpr int ALPH_SIZE {26};
+struct node buff[ALPH_SIZE] {};
 
-   return buff;
+int findpos (int pos){
+    for(int i {0}; i < ALPH_SIZE; i++){
+        if (buff[i].pos == pos)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+void Decoder(const char key[],char message[]){
+    int i {0};
+    int c {0};
+    int curPos {0};
+    while (key[i] != 0)
+    {
+        c = key[i] - 'a';
+        buff[c].freq++;
+        if (buff[c].pos < 0)
+        {
+            buff[c].pos = curPos;
+            curPos++;
+        }
+        i++;
+    }
+
+    for (i = 0; i < curPos; i++)
+    {
+        c = findpos(i);
+        message[i] = '@' + buff[c].freq;
+    }
 }

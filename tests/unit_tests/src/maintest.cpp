@@ -2,17 +2,14 @@
 #include "impl.h"
 
 #include <gtest/gtest.h>
+#include "saltan.h"
 
-char* IntToBinaryRepresentation(char *,int);
-
-TEST(Lab1,Simple)
+TEST(Lab4,SaltanSimple)
 {
-   int source = 0x5;
-   char* expected = "00000000000000000000000000000101";
-   char buffer[80];
-
-   char *actual = IntToBinaryRepresentation(buffer,source);
-
-
-   ASSERT_STREQ(expected,actual);
+  const char key[] = "ccaddfbbcacabaa";
+  const char expected[] = "DEBAC";
+  char actual[20];
+  Decoder(key,actual);
+  ASSERT_STREQ(expected,actual);
 }
+
