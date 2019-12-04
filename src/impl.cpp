@@ -1,9 +1,14 @@
 #include "impl.h"
-#include <cstring>
-#include <bitset>
+#include <cstdio>
 
-char* IntToBinaryRepresentation(char *buffer, int source)
+/*
+ * binaryInvert.cpp
+ *
+ *  Created on: 15 ����. 2017 �.
+ *      Author: Pavel Tsytovich
+ */
+
+int BinaryInvert(int x,int p,int n)
 {
-    strcpy(buffer, std::bitset<(sizeof(source)*8)>(source).to_string().c_str());
-    return buffer;
+    return x ^ ((((0xFFFFFFFF >> (p+1-n)) << (p+1-n)) << ((sizeof(int)*8)-p-1)) >> ((sizeof(int)*8)-p-1));
 }
