@@ -4,30 +4,34 @@
 
 void Decoder(const char key[],char message[])
 {
-  int	i = 0;
+  int	len = 0;
   std::map<char, int> alphabet;
 
   for (char ch = 'a'; ch <= 'z'; ++ch)
     alphabet.insert(std::make_pair(ch, 0));
-  while (key[i])
+  while (key[len])
   {
-    ++alphabet[key[i++]]; 
+    ++alphabet[key[len++]]; 
   }
-  i = 0;
   std::unordered_map<char, char> ret;
-  while (key[i])
+  for (int i = 0; i < len; i++)
   {
-    ret.insert(std::make_pair(key[i], alphabet[key[i]] + 65));
-    i++;
+    for (int j = 0; j < len; j++)
+    {
+      if (i != j)
+      {
+	if (key[i] == key[j])
+	{
+	  std::swap(key[len - 1], key[j]);
+	  len--;
+	}
+      }
+    }
   }
-  i = 0;
-  for (auto it = ret.begin(); it != ret.end(); it++)
+  for (int i = 0; i < len; i++)
   {
-    std::cout << it->second << std::endl;
-    message[i] = it->second;
-    i++;
+    //Perevesti novuya stroku v message
   }
-  
   std::cout << message << std::endl;
 }
 
