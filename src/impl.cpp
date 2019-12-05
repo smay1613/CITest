@@ -1,28 +1,29 @@
-#include "impl.h"
-#include <cstdio>
-#include <cmath>
-#include <cstdio>
-#include <cstring>
+/*
+ * Complex.cpp
+ *
+ *  Created on: 16 нояб. 2017 г.
+ *      Author: pavel
+ */
 
-void Decoder(const char key[],char message[]) {
-    int k = 0;
-    strcpy( message, key);
-    for( int i = 0; key[i]; ++i) {
-            char cmp = message[i];
-            if ( cmp != ' ') {
-                message[k] = 'A';
-                for( int j = i+1; message[j]; ++j) {
-                    if ( cmp == message[j]) {
-                        message[k]++;
-                        message[j] = ' ';
-                    }
-                }
-                k++;
-            }
-    }
-    message[k] = '\0';
+#include "impl.h"
+
+Complex::Complex(int re,int im): _re(re),_im(im) {
 }
 
+Complex::~Complex() {
+}
 
+Complex Complex::operator+(const Complex& op)
+{
+  return Complex( _re + op.getRe(), _im + op.getIm());
+}
 
+Complex Complex::operator-(const Complex &op)
+{
+  return Complex( _re - op.getRe(), _im - op.getIm());
+}
+bool operator==(const Complex &op1,const Complex &op2)
+{
+  return ((op1.getRe()==op2.getRe())&&(op1.getIm()==op2.getIm()));
+}
 
