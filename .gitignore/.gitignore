@@ -41,4 +41,4 @@ target_wrapper.*
 *.qmlproject.user.*
 
 # QtCreator CMake
-CMakeLists.txt.user*
+CMakeLists.txt.user
