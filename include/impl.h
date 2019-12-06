@@ -15,14 +15,21 @@ private:
     int _re;
     int _im;
 public:
-    Complex(int re = 0,int im = 0);
+    constexpr Complex(int re,int im): _re(re),_im(im) {}
 
-    virtual ~Complex();
-    int getRe() const { return _re;}
-    int getIm() const { return _im;}
-    Complex operator+(const Complex& op);
-    Complex operator-(const Complex &op);
+//    virtual ~Complex();
+    constexpr int getRe() const { return _re;}
+    constexpr int getIm() const { return _im;}
+    constexpr Complex operator+(const Complex& op) { return Complex( _re + op.getRe(), _im + op.getIm()); }
+    constexpr Complex operator-(const Complex& op) { return Complex( _re - op.getRe(), _im - op.getIm()); }
+
+    Complex operator+=( const Complex& op);
+    Complex operator-=( const Complex& op);
+
 };
 
 bool operator==(const Complex &op1,const Complex &op2);
+Complex operator "" _i( const char* str, size_t size);
+
+
 #endif /* LAB5_COMPLEX_H_ */
