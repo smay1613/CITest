@@ -1,37 +1,72 @@
 /*
- * Complex.cpp
+ * LinkedList.cpp
  *
  *  Created on: 16 нояб. 2017 г.
  *      Author: pavel
  */
-#include <iostream>
-#include <sstream>
-#include "impl.h"
 
-bool operator==(const Complex &op1,const Complex &op2)
+#include <impl.h>
+
+LinkedList::LinkedList(): _first(nullptr) {
+}
+
+LinkedList::LinkedList(std::initializer_list<int> list): _first(nullptr)
 {
-  return ((op1.getRe()==op2.getRe())&&(op1.getIm()==op2.getIm()));
+    for( auto i = std::begin( list); i != std::end( list); i++) {
+
+    }
 }
 
-Complex Complex::operator+=( const Complex& op) {
-    _re += op.getRe();
-    _im += op.getIm();
-    return *this;
+LinkedList::~LinkedList()
+{
+    for( int i = 0; i < getLength(); i++) {
+        removeAt(i);
+    }
 }
 
-Complex Complex::operator-=( const Complex& op) {
-    _re -= op.getRe();
-    _im -= op.getIm();
-    return *this;
+void LinkedList::removeAt(int index)
+{
+//    Node* current = _first;
+//    for( int i =)
 }
 
-#define UNUSED( a) (void)(a)
+void LinkedList::insertAt(int index,int value)
+{
+    Node* current = _first;
+    for( int i = 0; i < index; i++) {
+        if ( i == index) {
+            Node* new_node = new Node(value);
+            new_node->next = current->next;
+            current->next = new_node;
+            std::cout << "Element (" << value << ") was added" << std::endl;
+            break;
+        }
+        current = current->next;
+        if ( nullptr == current) {
+            std::cout << "Error: end of list reached" << std::endl;
+            break;
+        }
+    }
+}
 
-Complex operator "" _i( const char* str,  size_t size) {
-    UNUSED( size);
-    std::stringstream s(str);
-    int re, im;
-    s >> re >> im;
-    return Complex( re, im);
+int LinkedList::getLength() const
+{
+    Node* current = _first;
+    for( int i = 0;; i++) {
+        if ( nullptr == current) {
+            return i;
+        }
+    }
+}
+
+bool operator==(const LinkedList&op1,const LinkedList&op2)
+{
+ return false;
+}
+
+std::ostream& operator<<(std::ostream& os,const LinkedList &list)
+{
+
+ return os;
 }
 
