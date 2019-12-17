@@ -21,11 +21,11 @@ public:
 	void removeAt(int index);
 	int getLength() const;
     friend bool operator==(const LinkedList&op1,const LinkedList&op2);
-//	friend std::ostream& operator<<(std::ostream& os,const LinkedList &list);
+    friend std::ostream& operator<<(std::ostream& os,const LinkedList &list);
 };
 
 #endif /* LAB7_LINKEDLIST_H_ */
 
-//std::ostream& operator<<(std::ostream& os,const LinkedList &list);
+std::ostream& operator<<(std::ostream& os,const LinkedList &list);
 
-//bool operator==(const LinkedList&op1,const LinkedList&op2);
+bool operator==(const LinkedList&op1,const LinkedList&op2);

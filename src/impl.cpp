@@ -1,5 +1,4 @@
 #include "impl.h"
-#include <iostream>
 
 LinkedList::LinkedList(): _first(nullptr) 
 {
@@ -12,6 +11,7 @@ LinkedList::LinkedList(std::initializer_list<int> list): _first(nullptr)
     for(int element:list)
     {
         insertAt(ii,element);
+        ii++;
     }
 }
 
@@ -123,7 +123,7 @@ bool operator==(const LinkedList&op1,const LinkedList&op2)
         curNode2 = curNode2->next;
     }
 
-    if (!curNode1 && !curNode2)
+    if ((curNode1 == nullptr) && (curNode2 == nullptr))
     {
         return true;
     }
@@ -132,9 +132,15 @@ bool operator==(const LinkedList&op1,const LinkedList&op2)
         return false;
     }
 }
-/*
+
 std::ostream& operator<<(std::ostream& os,const LinkedList &list)
 {
+    LinkedList::Node *curNode = list._first;
+    while (curNode)
+    {
+        os << curNode->value;
+        curNode = curNode->next;
+    }
  return os;
 }
-*/
+
