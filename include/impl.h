@@ -25,11 +25,11 @@ public:
 
 class Ship : public IShip{
 private:
-    bool _status;
+    bool _status {true};
     Point _coord;
 public:
     Ship(int x,int y);
-    ~Ship();
+    ~Ship() override;
     bool fire(int x,int y) override;
     bool getStatus() override;
     Point getPoint() override;
@@ -44,6 +44,7 @@ private:
     Orientation _orientation;
     int _countDeck;
     IShip** _decks;
+
 public:
     BigShip(int x,int y,Orientation o,int deck);
     virtual ~BigShip() override;
