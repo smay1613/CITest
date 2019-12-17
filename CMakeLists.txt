@@ -11,6 +11,7 @@ set(headers
 
 set(BUILDDIR ${CMAKE_CURRENT_SOURCE_DIR}/../build)
 set(TEST true)
+set(CMAKE_BUILD_TYPE Debug)
 
 add_library(HomeworkProject SHARED ${sources})
 

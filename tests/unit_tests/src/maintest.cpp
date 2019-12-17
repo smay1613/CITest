@@ -9,7 +9,10 @@ TEST(Lab6,InsertAt0)
     LinkedList myList{1,2,3};
     LinkedList expectedList{2,1,2,3};
 
+    std::cout << myList;
+
     myList.insertAt(0,2);
+    std::cout << myList;
 
     ASSERT_EQ(myList,expectedList);
 

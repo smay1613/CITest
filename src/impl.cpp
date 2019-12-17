@@ -5,48 +5,54 @@
  *      Author: pavel
  */
 
-#include <impl.h>
+#include "impl.h"
 
 LinkedList::LinkedList(): _first(nullptr) {
 }
 
 LinkedList::LinkedList(std::initializer_list<int> list): _first(nullptr)
 {
-    for( auto i = std::begin( list); i != std::end( list); i++) {
-
+    Node** current_node = &_first;
+    for( auto i : list) {
+        *current_node = new Node { i, nullptr};
+        current_node = &(*current_node)->next;
     }
 }
 
 LinkedList::~LinkedList()
 {
-    for( int i = 0; i < getLength(); i++) {
-        removeAt(i);
+    while( nullptr != _first) {
+        Node* current_node = _first;
+        _first = current_node->next;
+        delete current_node;
     }
 }
 
 void LinkedList::removeAt(int index)
 {
-//    Node* current = _first;
-//    for( int i =)
+    Node** current = &_first;
+    for( int pos = 0; *current != nullptr; pos++) {
+        if ( pos == index) {
+            Node* next = (*current)->next;
+            delete *current;
+            *current = next;
+        }
+        *current = (*current)->next;
+    }
 }
 
 void LinkedList::insertAt(int index,int value)
 {
-    Node* current = _first;
-    for( int i = 0; i < index; i++) {
-        if ( i == index) {
-            Node* new_node = new Node(value);
-            new_node->next = current->next;
-            current->next = new_node;
-            std::cout << "Element (" << value << ") was added" << std::endl;
+    Node** current_node = &_first;
+    int     position = 0;
+    do {
+        if ( index == position) {
+            *current_node = new Node { value, *current_node};
             break;
         }
-        current = current->next;
-        if ( nullptr == current) {
-            std::cout << "Error: end of list reached" << std::endl;
-            break;
-        }
-    }
+        current_node = &(*current_node)->next;
+        position++;
+    } while( nullptr != *current_node);
 }
 
 int LinkedList::getLength() const
@@ -56,17 +62,35 @@ int LinkedList::getLength() const
         if ( nullptr == current) {
             return i;
         }
+        current = current->next;
     }
+    return 0;
 }
 
 bool operator==(const LinkedList&op1,const LinkedList&op2)
 {
- return false;
+    LinkedList::Node* current1 = op1._first;
+    LinkedList::Node* current2 = op2._first;
+    bool res = false;
+    while(( nullptr != current1)&&( nullptr != current2)) {
+        if (( current1->value) == ( current1->value)) {
+            res = true;
+        } else {
+            res = false;
+            break;
+        }
+        current1 = current1->next;
+        current2 = current2->next;
+    }
+    return res;
 }
 
 std::ostream& operator<<(std::ostream& os,const LinkedList &list)
 {
-
+    LinkedList::Node* current_node = list._first;
+    for( int i = 0; i < list.getLength(); i++ ) {
+        os << "[" << i << "]" << current_node->value << std::endl;
+    }
  return os;
 }
 
