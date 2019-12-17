@@ -10,30 +10,51 @@
 #define LAB6_LINKEDLIST_H_
 #include <iostream>
 
-class LinkedList {
-private:
-    struct Node
-    {
-        int value;
-        Node *next;
-    };
-Node* _first;
-
-public:
-    LinkedList();
-    LinkedList(std::initializer_list<int> list);
-    LinkedList( const LinkedList& list);
-    LinkedList(LinkedList &&src);
-    virtual ~LinkedList();
-    void insertAt(int index,int value);
-    void removeAt(int index);
-    int getLength() const;
-    friend bool operator==(const LinkedList&op1,const LinkedList&op2);
-    friend std::ostream& operator<<(std::ostream& os,const LinkedList &list);
+struct Point
+{
+    int x,y;
 };
+
+class IShip {
+public:
+    virtual ~IShip() {};
+    virtual bool fire(int x,int y) = 0;
+    virtual bool getStatus() = 0;
+    virtual Point getPoint() = 0;
+};
+
+class Ship : public IShip{
+private:
+    bool _status;
+    Point _coord;
+public:
+    Ship(int x,int y);
+    ~Ship();
+    bool fire(int x,int y) override;
+    bool getStatus() override;
+    Point getPoint() override;
+protected:
+    virtual void setStatus(bool value);
+};
+
+enum Orientation {HORIZONTAL,VERTICAL};
+
+class BigShip: public IShip {
+private:
+    Orientation _orientation;
+    int _countDeck;
+    IShip** _decks;
+public:
+    BigShip(int x,int y,Orientation o,int deck);
+    virtual ~BigShip() override;
+    bool fire(int x,int y) override;
+    bool getStatus() override;
+    Point getPoint() override;
+    int getDeck();
+    Orientation getOrientation();
+};
+
+
 
 #endif /* LAB6_LINKEDLIST_H_ */
 
-std::ostream& operator<<(std::ostream& os,const LinkedList &list);
-
-bool operator==(const LinkedList&op1,const LinkedList&op2);

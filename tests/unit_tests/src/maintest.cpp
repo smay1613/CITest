@@ -4,32 +4,40 @@
 #include <impl.h>
 #include <gtest/gtest.h>
 
-
-TEST(Lab7,CopyConstructor)
+TEST(Lab8,OneShip)
 {
-    LinkedList myList{1,2,3};
+    Ship myShip(1,2);
 
-    LinkedList expectedList{1,2,3};
-
-    LinkedList clone = myList;
-
-    myList.insertAt(0,2);
-
-    ASSERT_EQ(clone,expectedList);
-
+    ASSERT_FALSE(myShip.fire(3,2));
+    ASSERT_TRUE(myShip.fire(1,2));
+    ASSERT_FALSE(myShip.getStatus());
 }
 
-LinkedList Copy()
+TEST(Lab8,BigShip)
 {
-    LinkedList r={1,2,3};
-    return r;
+    BigShip myShip(1,2,HORIZONTAL,2);
+
+    ASSERT_FALSE(myShip.fire(5,2));
+    ASSERT_TRUE(myShip.fire(1,2));
+    ASSERT_TRUE(myShip.getStatus());
+    ASSERT_TRUE(myShip.fire(2,2));
+    ASSERT_FALSE(myShip.getStatus());
 }
 
-TEST(Lab7,MoveConstructor)
+TEST(Lab8,GameField)
 {
-    LinkedList expectedList{1,2,3};
-    LinkedList clone = std::move(LinkedList{1,2,3});
+    IShip * fields [] = { new Ship(1,2),
+                         new BigShip(5,6,VERTICAL,3),
+                         new Ship(10,11),
+                         new BigShip(20,30,HORIZONTAL,2)
+                       };
+    Point pt[] = { Point{1,2},Point{5,6},Point{10,11},Point{20,30}};
 
+    for(int i = 0; i < 4;i++ )
+        fields[i]->fire(pt[i].x,pt[i].y);
 
-    ASSERT_EQ(clone,expectedList);
+    ASSERT_FALSE(fields[0]->getStatus());
+    ASSERT_TRUE(fields[1]->getStatus());
+    ASSERT_FALSE(fields[2]->getStatus());
+    ASSERT_TRUE(fields[3]->getStatus());
 }
