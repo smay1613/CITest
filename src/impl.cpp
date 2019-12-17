@@ -19,6 +19,21 @@ LinkedList::LinkedList(std::initializer_list<int> list): _first(nullptr)
     }
 }
 
+LinkedList::LinkedList( const LinkedList& list) : _first(nullptr) {
+    Node** node = &_first;
+    for( Node* const* current_node = &list._first;
+         *current_node != nullptr;
+         current_node = &(*current_node)->next) {
+
+        *node = new Node { (*current_node)->value, nullptr};
+        node = &(*node)->next;
+    }
+}
+
+LinkedList::LinkedList(LinkedList &&src) {
+
+}
+
 LinkedList::~LinkedList()
 {
     while( nullptr != _first) {
@@ -33,11 +48,12 @@ void LinkedList::removeAt(int index)
     Node** current = &_first;
     for( int pos = 0; *current != nullptr; pos++) {
         if ( pos == index) {
-            Node* next = (*current)->next;
-            delete *current;
-            *current = next;
+            Node* for_delete = *current;
+            *current = for_delete->next;
+            delete for_delete;
+            break;
         }
-        *current = (*current)->next;
+        current = &(*current)->next;
     }
 }
 
@@ -73,7 +89,7 @@ bool operator==(const LinkedList&op1,const LinkedList&op2)
     LinkedList::Node* current2 = op2._first;
     bool res = false;
     while(( nullptr != current1)&&( nullptr != current2)) {
-        if (( current1->value) == ( current1->value)) {
+        if (( current1->value) == ( current2->value)) {
             res = true;
         } else {
             res = false;

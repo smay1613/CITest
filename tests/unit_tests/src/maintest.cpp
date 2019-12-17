@@ -4,57 +4,32 @@
 #include <impl.h>
 #include <gtest/gtest.h>
 
-TEST(Lab6,InsertAt0)
+
+TEST(Lab7,CopyConstructor)
 {
     LinkedList myList{1,2,3};
-    LinkedList expectedList{2,1,2,3};
 
-    std::cout << myList;
+    LinkedList expectedList{1,2,3};
+
+    LinkedList clone = myList;
 
     myList.insertAt(0,2);
-    std::cout << myList;
 
-    ASSERT_EQ(myList,expectedList);
-
-}
-TEST(Lab6,InsertAt1)
-{
-    LinkedList myList{1,2,3};
-    LinkedList expectedList{1,2,2,3};
-
-    myList.insertAt(1,2);
-
-    ASSERT_EQ(myList,expectedList);
+    ASSERT_EQ(clone,expectedList);
 
 }
 
-TEST(Lab6,RemoveAt1)
+LinkedList Copy()
 {
-    LinkedList myList{1,2,3};
-    LinkedList expectedList{1,3};
-
-    myList.removeAt(1);
-
-    ASSERT_EQ(myList,expectedList);
+    LinkedList r={1,2,3};
+    return r;
 }
 
-TEST(Lab6,RemoveAt0)
+TEST(Lab7,MoveConstructor)
 {
-    LinkedList myList{1,2,3};
-    LinkedList expectedList{2,3};
+    LinkedList expectedList{1,2,3};
+    LinkedList clone = std::move(LinkedList{1,2,3});
 
-    myList.removeAt(0);
 
-    ASSERT_EQ(myList,expectedList);
-
-}
-
-TEST(Lab6,RemoveAtLast)
-{
-    LinkedList myList{1,2,3};
-    LinkedList expectedList{1,2};
-
-    myList.removeAt(2);
-
-    ASSERT_EQ(myList,expectedList);
+    ASSERT_EQ(clone,expectedList);
 }
