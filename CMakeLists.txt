@@ -4,6 +4,7 @@ project(HomeworkProject VERSION 1.0.0)
 
 set(sources
     "src/impl.cpp"
+    "src/BigShip.cpp"
 )
 
 set(headers
