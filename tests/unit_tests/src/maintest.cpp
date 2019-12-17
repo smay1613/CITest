@@ -4,31 +4,54 @@
 #include <gtest/gtest.h>
 
 
-TEST(Lab5,Add)
+TEST(Lab6,InsertAt0)
 {
-    Complex a(1,2),b(3,4);
+    LinkedList myList{1,2,3};
+    LinkedList expectedList{2,1,2,3};
 
-    Complex expected(4,6);
+    myList.insertAt(0,2);
 
-    Complex actual = a + b;
+    ASSERT_EQ(myList,expectedList);
 
+}
+TEST(Lab6,InsertAt1)
+{
+    LinkedList myList{1,2,3};
+    LinkedList expectedList{1,2,2,3};
 
-    ASSERT_EQ(expected,actual);
-    ASSERT_EQ(a, Complex(1,2));
-    ASSERT_EQ(b,Complex(3,4));
+    myList.insertAt(1,2);
+
+    ASSERT_EQ(myList,expectedList);
+
 }
 
-TEST(Lab5,Sub)
+TEST(Lab6,RemoveAt1)
 {
-    Complex a(1,2),b(3,4);
+    LinkedList myList{1,2,3};
+    LinkedList expectedList{1,3};
 
-    Complex expected(-2,-2);
+    myList.removeAt(1);
 
-    Complex actual = a - b;
+    ASSERT_EQ(myList,expectedList);
+}
 
+TEST(Lab6,RemoveAt0)
+{
+    LinkedList myList{1,2,3};
+    LinkedList expectedList{2,3};
 
-    ASSERT_EQ(expected,actual);
-    ASSERT_EQ(a,Complex(1,2));
-    ASSERT_EQ(b,Complex(3,4));
+    myList.removeAt(0);
 
+    ASSERT_EQ(myList,expectedList);
+
+}
+
+TEST(Lab6,RemoveAtLast)
+{
+    LinkedList myList{1,2,3};
+    LinkedList expectedList{1,2};
+
+    myList.removeAt(2);
+
+    ASSERT_EQ(myList,expectedList);
 }

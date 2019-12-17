@@ -1,18 +1,29 @@
-#pragma once
+#ifndef LAB6_LINKEDLIST_H_
+#define LAB6_LINKEDLIST_H_
+#include <iostream>
 
-class Complex {
+class LinkedList {
 private:
-    int _re;
-    int _im;
+        struct Node
+        {
+                int value;
+                Node *next;
+        };
+Node* _first;
+
 public:
-    constexpr Complex(int re = 0,int im = 0);
-    //virtual ~Complex();
-    constexpr int getRe() const { return _re;}
-    constexpr int getIm() const { return _im;}
-    Complex operator+(const Complex &op);
-
-    Complex operator-(const Complex &op);
-
+        LinkedList();
+        LinkedList(std::initializer_list<int> list);
+        virtual ~LinkedList();
+        void insertAt(int index,int value);
+        void removeAt(int index);
+        int getLength() const;
+        friend bool operator==(const LinkedList&op1,const LinkedList&op2);
+        friend std::ostream& operator<<(std::ostream& os,const LinkedList &list);
 };
 
-bool operator==(const Complex &op1,const Complex &op2);
+#endif /* LAB6_LINKEDLIST_H_ */
+
+std::ostream& operator<<(std::ostream& os,const LinkedList &list);
+
+bool operator==(const LinkedList&op1,const LinkedList&op2);
