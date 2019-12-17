@@ -21,6 +21,23 @@ LinkedList::~LinkedList()
     }
 }
 
+LinkedList::LinkedList(const LinkedList& list) : _first(nullptr)
+{
+    Node* ptr = list._first;
+
+    while(ptr)
+    {
+        insertAt(getLength(), ptr->value);
+        ptr = ptr->next;
+    }
+}
+
+LinkedList::LinkedList(LinkedList &&src)
+{
+    _first = src._first;
+    src._first = nullptr;
+}
+
 void LinkedList::removeAt(int index)
 {
     Node* current_node = _first;

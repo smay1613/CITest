@@ -14,6 +14,8 @@ public:
     LinkedList();
     LinkedList(std::initializer_list<int> list);
     virtual ~LinkedList();
+    LinkedList( const LinkedList& list);
+    LinkedList(LinkedList &&src);
     void insertAt(int index,int value);
     void removeAt(int index);
     int getLength() const;
