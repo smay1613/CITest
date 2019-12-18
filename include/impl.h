@@ -1,5 +1,4 @@
-#ifndef LAB6_LINKEDLIST_H_
-#define LAB6_LINKEDLIST_H_
+#pragma once
 #include <iostream>
 
 class LinkedList {
@@ -9,22 +8,22 @@ private:
 		int value;
 		Node *next;
 	};
-Node* _first;
+Node* _first {nullptr};
+int linkSize {0};
 
 public:
-	LinkedList();
-	LinkedList(std::initializer_list<int> list);
+    LinkedList();
+    LinkedList(std::initializer_list<int> list);
     LinkedList(const LinkedList &src);
     LinkedList(LinkedList &&src);
-	virtual ~LinkedList();
-	void insertAt(int index,int value);
-	void removeAt(int index);
-	int getLength() const;
+    virtual ~LinkedList();
+    void insertAt(int index,int value);
+    void removeAt(int index);
+    int getLength() const;
+    void findNode(int index, Node **previousNode, Node **currentNode);
     friend bool operator==(const LinkedList&op1,const LinkedList&op2);
     friend std::ostream& operator<<(std::ostream& os,const LinkedList &list);
 };
-
-#endif /* LAB7_LINKEDLIST_H_ */
 
 std::ostream& operator<<(std::ostream& os,const LinkedList &list);
 
