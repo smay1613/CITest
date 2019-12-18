@@ -10,7 +10,7 @@
 #include <stdexcept>
 
 Integer::Integer(int value) : _value {value} {
-    if ((value < 0)&&( value > 9)) {
+    if ((value < 0)||( value > 9)) {
         throw std::out_of_range("out of range value");
     }
 }
@@ -19,9 +19,9 @@ Integer::~Integer() {
 }
 
 Integer::operator char*() {
-    auto val = map.begin();
-    if ( val = map.find(_value), val != map.end()) {
-        return (val->second).c_str();
-    }
-    return nullptr;
+    const char* encode_table[] =
+        { "zero" , "one"  , "two"  , "three",
+          "four" , "five" , "six"  , "seven",
+          "eight", "nine" };
+    return const_cast<char*>(encode_table[ _value]);
 }
