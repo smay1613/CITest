@@ -51,12 +51,12 @@ LinkedList::~LinkedList()
 
 void LinkedList::removeAt(int index)
 {
-    if ((index >= 1) && (index <= linkSize))
+    if ((index >= 0) && (index <= linkSize))
     {
         Node *currentNode {_first};
         Node *previousNode {nullptr};
 
-        if (index>1)
+        if (index>0)
         {
             findNode(index, &previousNode, &currentNode);
             previousNode->next = currentNode->next;
