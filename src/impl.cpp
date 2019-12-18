@@ -1,23 +1,24 @@
 #include "impl.h"
-#include <lab6/LinkedList.h>
 
 LinkedList::LinkedList(): _first(nullptr) 
 {
 }
 
-LinkedList::LinkedList(std::initializer_list<int> list): _first(nullptr)
+LinkedList::LinkedList(std::initializer_list<int> list)
 {
-    int ii = 0;
+    int nodeNumber {0};
+
     for(int element:list)
     {
-        insertAt(ii,element);
+        insertAt(nodeNumber,element);
+        nodeNumber ++;
     }
 }
 
 LinkedList::~LinkedList()
 {
-    *Node curNode = _first;
-    *Node prevNode = nullptr;
+    Node *curNode {_first};
+    Node *prevNode {nullptr};
 
     while(curNode)
     {
@@ -29,84 +30,86 @@ LinkedList::~LinkedList()
 
 void LinkedList::removeAt(int index)
 {
-    *Node curNode = _first;
-    *Node prevNode = nullptr;
+    if ((index >= 0) && (index <= linkSize))
+    {
+        Node *currentNode {_first};
+        Node *previousNode {nullptr};
 
-    if (index>1)
-    {
-        for(int ii=1, ii<index, ii++)
+        if (index>0)
         {
-            prevNode = curNode;
-            curNode = curNode->next;
+            findNode(index, &previousNode, &currentNode);
+            previousNode->next = currentNode->next;
+            delete currentNode;
         }
-        prevNode->next = curNode->next; 
-        delete curNode;
-    }
-    else
-    {
-        _first = curNode->next;
-        delete curNode;
+        else
+        {
+            _first = currentNode->next;
+            delete currentNode;
+        }
+        linkSize--;
     }
 }
 
 void LinkedList::insertAt(int index,int value)
 {
-    *Node n = new Node();
-    *Node curNode = _first;
-    *Node prevNode = nullptr;
+    if ((index >= 0) && (index <= linkSize))
+    {
+        Node *n = new Node;
+        Node *currentNode {_first};
+        Node *previousNode {nullptr};
 
-    if (index>0)
-    {
-        for(int ii=0, ii<index, ii++)
+        if (index>0)
         {
-            prevNode = curNode;
-            curNode = curNode->next;
+            findNode(index, &previousNode, &currentNode);
+            previousNode->next = n;
         }
+        else
+        {
+            _first = n;
+        }
+        n->next = currentNode;
+        n->value = value;
+        linkSize++;
     }
-    else
-    {
-        _first = n;
-    }
-    prevNode->next = n;
-    n->next = CurNode;
-    n->value = value;
 }
 
 int LinkedList::getLength() const
 {
-    int index = 0;
-    *Node curNode = _first;
+    return linkSize;
+}
 
-    while(curNode)
+void LinkedList::findNode(int index, Node **previousNode, Node **currentNode)
+{
+    for(int ii=0; ii<index; ii++)
     {
-        curNode = curNode->next;
-        ii++;
+        *previousNode = *currentNode;
+        *currentNode = (*currentNode)->next;
     }
-    return index;
 }
 
 bool operator==(const LinkedList&op1,const LinkedList&op2)
 {
-    *Node curNode1 = op1._first;
-    *Node curNode2 = op2._first;
+    LinkedList::Node *Node1 {op1._first};
+    LinkedList::Node *Node2 {op2._first};
 
-    while ((curNode1->value == curNode2->value) && curNode1 && curNode2)
+    while (Node1 && Node2 && (Node1->value == Node2->value))
     {
-        curNode1 = curNode1->next;
-        curNode2 = curnode2->next;
+        Node1 = Node1->next;
+        Node2 = Node2->next;
     }
 
-    if (!curNode1 && !curNode2)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return (Node1 == nullptr) && (Node2 == nullptr);
+
 }
 
 std::ostream& operator<<(std::ostream& os,const LinkedList &list)
 {
+    LinkedList::Node *currentNode {list._first};
+    while (currentNode)
+    {
+        os << currentNode->value;
+        currentNode = currentNode->next;
+    }
  return os;
 }
+
