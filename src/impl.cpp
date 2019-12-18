@@ -6,54 +6,22 @@
  */
 
 #include "impl.h"
+#include <exception>
+#include <stdexcept>
 
-Ship::Ship(int x,int y)
-{
-
+Integer::Integer(int value) : _value {value} {
+    if ((value < 0)&&( value > 9)) {
+        throw std::out_of_range("out of range value");
+    }
 }
 
-Ship::~Ship()
-{
+Integer::~Integer() {
 }
 
-bool Ship::getStatus()
-{
-    return true;
+Integer::operator char*() {
+    auto val = map.begin();
+    if ( val = map.find(_value), val != map.end()) {
+        return (val->second).c_str();
+    }
+    return nullptr;
 }
-
-bool Ship::fire(int x,int y)
-{
-    return false;
-}
-
-void Ship::setStatus(bool value)
-{
-
-}
-
-Point Ship::getPoint()
-{
-    return Point();
-}
-
-BigShip::BigShip(int x,int y,Orientation o,int deck)
-{
-}
-
-BigShip::~BigShip()
-{
-}
-
-bool BigShip::fire(int x,int y)
-{
- return false;
-}
-bool BigShip::getStatus()
-{
- return true;
-}
-Point BigShip::getPoint()
-{
-    return Point();
-}
-
