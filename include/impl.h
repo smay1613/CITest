@@ -14,6 +14,8 @@ Node* _first;
 public:
         LinkedList();
         LinkedList(std::initializer_list<int> list);
+        LinkedList(const LinkedList& src);
+        LinkedList(LinkedList &&src);
         virtual ~LinkedList();
         void insertAt(int index,int value);
         void removeAt(int index);

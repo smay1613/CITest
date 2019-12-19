@@ -1,7 +1,7 @@
 #include "impl.h"
+#include <iostream>
 
 LinkedList::LinkedList(): _first(nullptr) {
-
 
 }
 
@@ -21,9 +21,32 @@ LinkedList::LinkedList(std::initializer_list<int> list): _first(nullptr)
         tmp = newNode;
     }
 }
-
+LinkedList::LinkedList(const LinkedList &src) : _first(nullptr)
+{
+    int NewNodeCount {0};
+    Node *BaseNodePtr {src._first};
+    while (BaseNodePtr)
+    {
+        insertAt(NewNodeCount,BaseNodePtr->value);
+        BaseNodePtr = BaseNodePtr->next;
+        NewNodeCount++;
+    }
+}
+LinkedList::LinkedList(LinkedList &&src)
+{
+    _first = src._first;
+    _first = nullptr;
+}
 LinkedList::~LinkedList()
 {
+    Node *currentNode = _first;
+    Node *NextNode;
+    while (currentNode->next){
+        NextNode = currentNode->next;
+        delete currentNode;
+        currentNode = NextNode;
+    }
+    delete currentNode;
 }
 
 void LinkedList::removeAt(int index)
